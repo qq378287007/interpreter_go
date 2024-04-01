@@ -36,10 +36,11 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.MINUS, l.ch)
 	case '!':
 		if l.peekChar() == '=' {
-			ch := l.ch
+			//ch := l.ch
 			l.readChar()
-			literal := string(ch) + string(l.ch)
-			tok = token.Token{Type: token.NOT_EQ, Literal: literal}
+			//literal := string(ch) + string(l.ch)
+			//tok = token.Token{Type: token.NOT_EQ, Literal: literal}
+			tok = token.Token{Type: token.NOT_EQ, Literal: "!="}
 		} else {
 			tok = newToken(token.BANG, l.ch)
 		}
