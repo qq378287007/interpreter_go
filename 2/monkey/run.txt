@@ -1,0 +1,23 @@
+cd monkey
+
+go mod init monkey
+
+go mod tidy
+
+go test .\lexer -count=1
+
+go test .\ast -count=1
+
+go test .\parser -count=1
+
+//parser/parser.go文件中
+//parseExpressionStatement()，首行添加defer untrace(trace("parseExpressionStatement"))
+//parseExpression()，首行添加defer untrace(trace("parseExpression"))
+//parseIdentifier()，首行添加defer untrace(trace("parseIdentifier"))
+//parseIntegerLiteral()，首行添加defer untrace(trace("parseIntegerLiteral"))
+//parsePrefixExpression()，首行添加defer untrace(trace("parsePrefixExpression"))
+//parseInfixExpression()，首行添加defer untrace(trace("parseInfixExpression"))
+//......
+go test -v -run TestOperatorPrecedenceParsing .\parser -count=1
+
+go run main.go

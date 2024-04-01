@@ -1,0 +1,17 @@
+cd monkey
+
+go mod init monkey
+
+go mod tidy
+
+go test .\lexer -count=1
+
+go test .\ast -count=1
+
+go test .\parser -count=1
+
+go test .\object -count=1
+
+go test .\evaluator -count=1
+
+go run main.go

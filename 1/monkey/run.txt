@@ -1,0 +1,7 @@
+go mod init monkey
+
+go mod tidy
+
+go test .\lexer
+
+go run main.go
