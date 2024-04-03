@@ -1,7 +1,5 @@
 package token
 
-type TokenType string
-
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
@@ -42,6 +40,8 @@ const (
 	ELSE     = "ELSE"
 	RETURN   = "RETURN"
 )
+
+type TokenType string
 
 type Token struct {
 	Type    TokenType
