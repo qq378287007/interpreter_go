@@ -291,8 +291,7 @@ func TestFunctionObject(t *testing.T) {
 	}
 
 	if len(fn.Parameters) != 1 {
-		t.Fatalf("function has wrong parameters. Parameters=%+v",
-			fn.Parameters)
+		t.Fatalf("function has wrong parameters. Parameters=%+v", fn.Parameters)
 	}
 
 	if fn.Parameters[0].String() != "x" {
@@ -407,13 +406,11 @@ func TestBuiltinFunctions(t *testing.T) {
 		case string:
 			errObj, ok := evaluated.(*object.Error)
 			if !ok {
-				t.Errorf("object is not Error. got=%T (%+v)",
-					evaluated, evaluated)
+				t.Errorf("object is not Error. got=%T (%+v)", evaluated, evaluated)
 				continue
 			}
 			if errObj.Message != expected {
-				t.Errorf("wrong error message. expected=%q, got=%q",
-					expected, errObj.Message)
+				t.Errorf("wrong error message. expected=%q, got=%q", expected, errObj.Message)
 			}
 		case []int:
 			array, ok := evaluated.(*object.Array)
@@ -423,8 +420,7 @@ func TestBuiltinFunctions(t *testing.T) {
 			}
 
 			if len(array.Elements) != len(expected) {
-				t.Errorf("wrong num of elements. want=%d, got=%d",
-					len(expected), len(array.Elements))
+				t.Errorf("wrong num of elements. want=%d, got=%d", len(expected), len(array.Elements))
 				continue
 			}
 
@@ -445,8 +441,7 @@ func TestArrayLiterals(t *testing.T) {
 	}
 
 	if len(result.Elements) != 3 {
-		t.Fatalf("array has wrong num of elements. got=%d",
-			len(result.Elements))
+		t.Fatalf("array has wrong num of elements. got=%d", len(result.Elements))
 	}
 
 	testIntegerObject(t, result.Elements[0], 1)

@@ -117,8 +117,7 @@ func (p *Parser) Errors() []string {
 }
 
 func (p *Parser) peekError(t token.TokenType) {
-	msg := fmt.Sprintf("expected next token to be %s, got %s instead",
-		t, p.peekToken.Type)
+	msg := fmt.Sprintf("expected next token to be %s, got %s instead", t, p.peekToken.Type)
 	p.errors = append(p.errors, msg)
 }
 
@@ -285,9 +284,7 @@ func (p *Parser) parseIntegerLiteral() ast.Expression {
 func (p *Parser) parsePrefixExpression() ast.Expression {
 	//defer untrace(trace("parsePrefixExpression"))
 
-	expression := &ast.PrefixExpression{
-		Token: p.curToken,
-	}
+	expression := &ast.PrefixExpression{Token: p.curToken}
 
 	p.nextToken()
 
@@ -302,10 +299,7 @@ func (p *Parser) parsePrefixExpression() ast.Expression {
 func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
 	//defer untrace(trace("parseInfixExpression"))
 
-	expression := &ast.InfixExpression{
-		Token: p.curToken,
-		Left:  left,
-	}
+	expression := &ast.InfixExpression{Token: p.curToken, Left: left}
 
 	precedence := p.curPrecedence()
 	p.nextToken()

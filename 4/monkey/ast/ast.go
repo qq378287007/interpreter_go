@@ -6,23 +6,19 @@ import (
 	"strings"
 )
 
-// 基础节点接口
-type Node interface {
+type Node interface { // 节点
 	String() string
 }
 
-// 语句
-type Statement interface {
+type Statement interface { // 语句
 	Node
 }
 
-// 表达式
-type Expression interface {
+type Expression interface { // 表达式
 	Node
 }
 
-// 程序
-type Program struct {
+type Program struct { // 程序
 	Statements []Statement
 }
 
@@ -36,8 +32,7 @@ func (p *Program) String() string {
 	return out.String()
 }
 
-// let语句
-type LetStatement struct {
+type LetStatement struct { // let语句
 	Name  *Identifier // 标识符
 	Value Expression  // 右侧表达式
 }
@@ -55,8 +50,7 @@ func (ls *LetStatement) String() string {
 	return out.String()
 }
 
-// return语句
-type ReturnStatement struct {
+type ReturnStatement struct { // return语句
 	ReturnValue Expression //return右边表达式
 }
 
@@ -71,8 +65,7 @@ func (rs *ReturnStatement) String() string {
 	return out.String()
 }
 
-// expression语句
-type ExpressionStatement struct {
+type ExpressionStatement struct { // expression语句
 	Expression Expression
 }
 
@@ -80,8 +73,7 @@ func (es *ExpressionStatement) String() string {
 	return es.Expression.String() + ";" + "\n"
 }
 
-// block语句
-type BlockStatement struct {
+type BlockStatement struct { // block语句
 	Statements []Statement
 }
 
@@ -98,32 +90,28 @@ func (bs *BlockStatement) String() string {
 	return out.String()
 }
 
-// 标识符
-type Identifier struct {
+type Identifier struct { // 标识符
 	Token token.Token // 词法单元
 }
 
 func (i *Identifier) String() string { return i.Token.Literal }
 
-// 布尔字面量
-type Boolean struct {
+type Boolean struct { // 布尔字面量
 	Token token.Token
 	Value bool
 }
 
 func (b *Boolean) String() string { return b.Token.Literal }
 
-// 整数字面量
-type IntegerLiteral struct {
+type IntegerLiteral struct { // 整数字面量
 	Token token.Token
 	Value int64
 }
 
 func (il *IntegerLiteral) String() string { return il.Token.Literal }
 
-// 前缀表达式
-type PrefixExpression struct {
-	Token token.Token // The prefix token, e.g. !
+type PrefixExpression struct { // 前缀表达式
+	Token token.Token
 	Right Expression
 }
 
@@ -138,9 +126,8 @@ func (pe *PrefixExpression) String() string {
 	return out.String()
 }
 
-// 中缀表达式
-type InfixExpression struct {
-	Token token.Token // The operator token, e.g. +
+type InfixExpression struct { // 中缀表达式
+	Token token.Token
 	Left  Expression
 	Right Expression
 }
@@ -157,8 +144,7 @@ func (ie *InfixExpression) String() string {
 	return out.String()
 }
 
-// if表达式
-type IfExpression struct {
+type IfExpression struct { // if表达式
 	Condition   Expression
 	Consequence *BlockStatement
 	Alternative *BlockStatement
@@ -180,8 +166,7 @@ func (ie *IfExpression) String() string {
 	return out.String()
 }
 
-// 函数字面量
-type FunctionLiteral struct {
+type FunctionLiteral struct { // 函数字面量
 	Parameters []*Identifier
 	Body       *BlockStatement
 }
@@ -203,8 +188,7 @@ func (fl *FunctionLiteral) String() string {
 	return out.String()
 }
 
-// 调用表达式
-type CallExpression struct {
+type CallExpression struct { // 调用表达式
 	Function  Expression // 标识符或函数字面量
 	Arguments []Expression
 }
@@ -225,15 +209,13 @@ func (ce *CallExpression) String() string {
 	return out.String()
 }
 
-// 字符串字面量
-type StringLiteral struct {
+type StringLiteral struct { // 字符串字面量
 	Token token.Token
 }
 
 func (sl *StringLiteral) String() string { return sl.Token.Literal }
 
-// 数组字面量
-type ArrayLiteral struct {
+type ArrayLiteral struct { // 数组字面量
 	Elements []Expression
 }
 
@@ -252,8 +234,7 @@ func (al *ArrayLiteral) String() string {
 	return out.String()
 }
 
-// 索引表达式
-type IndexExpression struct {
+type IndexExpression struct { // 索引表达式
 	Left  Expression
 	Index Expression
 }
@@ -270,8 +251,7 @@ func (ie *IndexExpression) String() string {
 	return out.String()
 }
 
-// 哈希字面量
-type HashLiteral struct {
+type HashLiteral struct { // 哈希字面量
 	Pairs map[Expression]Expression
 }
 
